@@ -1,0 +1,10 @@
+{
+	"name": "hamilton",
+	"compatibility_date": "2026-11-01",
+	"assets": {
+		"directory": "./public"
+	},
+	"routes": [
+		{ "pattern": "hamilton.arnee.me", "custom_domain": true }
+	]
+}
