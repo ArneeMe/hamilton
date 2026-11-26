@@ -231,52 +231,19 @@ section + section { margin-top: 80px; }
 }
 .program li.done { opacity: .5; }
 
-.intro { text-align: center; max-width: 540px; margin: -12px auto 28px; color: var(--muted); }
-.bingo {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 2px solid var(--ink);
-  outline: 1px solid var(--ink);
-  outline-offset: 4px;
-}
-.bingo button {
-  position: relative;
-  appearance: none;
-  border: 0;
-  border-right: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  background: transparent;
-  font: inherit;
-  font-size: 16px;
-  line-height: 1.3;
-  color: var(--ink);
-  padding: 14px 8px;
-  min-height: 112px;
+
+.spoiler summary {
   cursor: pointer;
-}
-.bingo button:nth-child(3n) { border-right: 0; }
-.bingo button:nth-last-child(-n+3) { border-bottom: 0; }
-.bingo button:hover { background: var(--paper-dark); }
-.bingo button[aria-pressed="true"]::after {
-  content: "";
-  position: absolute;
-  inset: 50% auto auto 50%;
-  width: 70px; height: 70px;
-  margin: -35px 0 0 -35px;
-  border: 3px solid var(--red);
-  border-radius: 50%;
-  transform: rotate(-12deg) scale(1, .92);
-  opacity: .85;
-}
-.bingo-status {
   text-align: center;
   font-family: "IM Fell English", serif;
   font-style: italic;
-  font-size: 22px;
-  min-height: 1.5em;
-  margin: 22px 0 0;
+  font-size: 21px;
+  padding: 18px;
+  border: 1px dashed var(--muted);
+  list-style: none;
 }
-
+.spoiler summary::-webkit-details-marker { display: none; }
+.spoiler[open] summary { display: none; }
 .facts { list-style: none; padding: 0; margin: 0; columns: 2 260px; column-gap: 40px; }
 .facts li { break-inside: avoid; margin: 0 0 18px; padding-left: 22px; position: relative; }
 .facts li::before { content: "★"; position: absolute; left: 0; top: 1px; color: var(--gold); font-size: 14px; }
@@ -293,7 +260,6 @@ footer {
   body { font-size: 17px; }
   .program li { grid-template-columns: 64px 1fr; gap: 2px 12px; padding: 16px 6px; }
   .program time { font-size: 21px; }
-  .bingo button { font-size: 14px; min-height: 100px; padding: 10px 4px; }
 }
 </style>
 </head>
@@ -341,21 +307,21 @@ footer {
         <time>18.15</time>
         <div>
           <h3>Akt I</h3>
-          <p>Fra <i>Alexander Hamilton</i> til <i>Non-Stop</i>. Rundt 81 minutter. Telefonene ned, King George følger med.</p>
+          <p>Fra <i>Alexander Hamilton</i> til <i>Non-Stop</i>.</p>
         </div>
       </li>
       <li data-start="2026-11-28T19:36:00+01:00" data-end="2026-11-28T20:40:00+01:00">
         <time>19.40</time>
         <div>
           <h3>Pause og middag</h3>
-          <p>Omtrent en time. Middagen avgjøres ved kjøkkenbordet, i <i>the room where it happens</i>. Ingen dueller om siste porsjon.</p>
+          <p>Omtrent en time. Middagen avgjøres ved kjøkkenbordet, i <i>the room where it happens</i>.</p>
         </div>
       </li>
       <li data-start="2026-11-28T20:40:00+01:00" data-end="2026-11-28T21:57:00+01:00">
         <time>20.40</time>
         <div>
           <h3>Akt II</h3>
-          <p>Jefferson kommer hjem fra Paris og lurer på <i>what'd I miss</i>. Rundt 77 minutter. Ha lommetørkle klart.</p>
+          <p><i>What'd I miss?</i> Vi kjører i gang med andre akt.</p>
         </div>
       </li>
       <li data-start="2026-11-28T21:57:00+01:00" data-end="2026-11-29T03:00:00+01:00">
@@ -368,35 +334,19 @@ footer {
     </ol>
   </section>
 
-  <section>
-    <h2>HamilTok-bingo</h2>
-    <div class="rule"><span>★</span></div>
-    <p class="intro">Trykk på ruta når det skjer. Tre på rad, og du får rope det høyt.</p>
-    <div class="bingo" id="bingo">
-      <button type="button" aria-pressed="false">King George spytter</button>
-      <button type="button" aria-pressed="false">«And Peggy!»</button>
-      <button type="button" aria-pressed="false">Lafayette rapper fortere enn tekstingen</button>
-      <button type="button" aria-pressed="false">Noen sier «ten dollar founding father»</button>
-      <button type="button" aria-pressed="false">Noen synger med på <i>Satisfied</i> og gir opp</button>
-      <button type="button" aria-pressed="false">Philip teller på fransk</button>
-      <button type="button" aria-pressed="false">«Talk less, smile more»</button>
-      <button type="button" aria-pressed="false">Jefferson danser inn i <i>What'd I Miss</i></button>
-      <button type="button" aria-pressed="false">Elizas gisp på slutten</button>
-    </div>
-    <p class="bingo-status" id="bingo-status"></p>
-  </section>
 
   <section>
-    <h2>Ting du kan lure på</h2>
+    <h2>Funfact-spoilers</h2>
     <div class="rule"><span>★</span></div>
+    <details class="spoiler">
+    <summary>Inneholder spoilers. Trykk for å vise.</summary>
     <ul class="facts">
-      <li>Peggy og Maria Reynolds spilles av samme skuespiller. Peggy forsvinner etter akt I, så Maria tar over.</li>
-      <li>Lafayette og Jefferson spilles også av samme skuespiller. Det samme gjelder Mulligan og Madison.</li>
-      <li>King George er på scenen i rundt ni minutter totalt. Han bruker dem godt.</li>
+      <li>King George er på scenen i rundt ni minutter totalt.</li>
       <li>Spyttet er ekte. Jonathan Groff sa at han spyttet mye mer enn han trodde, og kameraet fikk med alt.</li>
       <li>Hamilton er på tidollarseddelen i USA. Han ble nesten byttet ut der før musikalen kom, og fikk beholde plassen.</li>
       <li>Reglene i <i>Ten Duel Commandments</i> er ekte duellregler fra 1700-tallet.</li>
     </ul>
+    </details>
   </section>
 </main>
 
@@ -444,30 +394,6 @@ footer {
   }
   tick();
   setInterval(tick, 1000);
-
-  var key = "hamilton-bingo";
-  var buttons = Array.prototype.slice.call(document.querySelectorAll("#bingo button"));
-  var saved = [];
-  try { saved = JSON.parse(localStorage.getItem(key)) || []; } catch (e) {}
-  var lines = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-
-  function update() {
-    var on = buttons.map(function (b) { return b.getAttribute("aria-pressed") === "true"; });
-    var count = on.filter(Boolean).length;
-    var bingo = lines.some(function (l) { return l.every(function (i) { return on[i]; }); });
-    el("bingo-status").textContent =
-      count === 9 ? "Hele brettet. Du er ikke satisfied, du er ferdig." :
-      bingo ? "Bingo! Rop det høyt. Dette er skuddet ditt." : "";
-    try { localStorage.setItem(key, JSON.stringify(on)); } catch (e) {}
-  }
-  buttons.forEach(function (b, i) {
-    if (saved[i]) b.setAttribute("aria-pressed", "true");
-    b.addEventListener("click", function () {
-      b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
-      update();
-    });
-  });
-  update();
 })();
 </script>
 </body>
